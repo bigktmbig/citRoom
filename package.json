@@ -1,0 +1,43 @@
+{
+  "name": "Cit room",
+  "version": "1.0.0",
+  "main": "server/server.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "gulp",
+    "pretest": "gulp lint",
+    "dev": "gulp",
+    "dev-debug": "DEBUG_API=1 gulp",
+    "postinstall": "cd client ; npm install"
+  },
+  "dependencies": {
+    "compression": "^1.0.3",
+    "cors": "^2.5.2",
+    "loopback": "^2.22.0",
+    "loopback-boot": "^2.6.5",
+    "loopback-component-explorer": "^2.1.0",
+    "loopback-component-fixtures": "0.0.6",
+    "loopback-datasource-juggler": "^2.39.0",
+    "serve-favicon": "^2.0.1",
+    "socket.io": "^1.4.5"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.6.5",
+    "babel-preset-es2015": "^6.6.0",
+    "eslint-config-standard": "^5.1.0",
+    "eslint-plugin-promise": "^1.1.0",
+    "eslint-plugin-standard": "^1.3.2",
+    "gulp": "^3.9.1",
+    "gulp-esformatter": "^6.0.0",
+    "gulp-eslint": "^2.0.0",
+    "gulp-loopback-sdk-angular": "^0.1.4",
+    "gulp-nodemon": "^2.0.6",
+    "gulp-rename": "^1.2.2",
+    "jshint": "^2.5.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bigktmbig/citRoom"
+  },
+  "description": "cit room"
+}
