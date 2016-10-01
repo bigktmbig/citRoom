@@ -1,16 +1,16 @@
 {
-  "name": "bootstrap-admin-angular",
+  "name": "big_cit_room",
   "version": "1.0.0",
   "license": "MIT",
-  "description": "An AngularJS demo of the bootstrap-admin-ui using ES6/webpack",
-  "author": "Bram Borggreve <borggreve@gmail.com>",
-  "homepage": "https://github.com/beeman/bootstrap-admin-angular",
+  "description": "big cit room using ES6/webpack",
+  "author": "Big",
+  "homepage": "https://github.com/bigktmbig/citRoom",
   "repository": {
     "type": "git",
-    "url": "https://github.com/beeman/bootstrap-admin-angular.git"
+    "url": "https://github.com/bigktmbig/citRoom.git"
   },
   "bugs": {
-    "url": "https://github.com/beeman/bootstrap-admin-angular/issues"
+    "url": "https://github.com/bigktmbig/citRoom/issues"
   },
   "scripts": {
     "build": "rimraf dist && webpack --bail --progress --profile",
