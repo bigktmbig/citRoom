@@ -1,5 +1,5 @@
 {
-  "name": "Cit room",
+  "name": "cit_room",
   "version": "1.0.0",
   "main": "server/server.js",
   "license": "MIT",
