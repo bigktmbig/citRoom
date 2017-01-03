@@ -1,0 +1,52 @@
+{
+  "name": "Conversation",
+  "plural": "conversations",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "id": {
+      "type": "string",
+      "required": true
+    },
+    "conversationName": {
+      "type": "string",
+      "required": true
+    },
+    "userId": {
+      "type": "string",
+      "required": true
+    },
+    "senderId": {
+      "type": "string",
+      "required": true
+    },
+    "receiverId": {
+      "type": "string",
+      "required": true
+    },
+    "createDate": {
+      "type": "date"
+    },
+    "description": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "sender": {
+      "type": "belongsTo",
+      "model": "Client",
+      "foreignKey": "senderId"
+    },
+    "receiver": {
+      "type": "belongsTo",
+      "model": "Client",
+      "foreignKey": "receiverId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

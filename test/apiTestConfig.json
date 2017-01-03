@@ -1,0 +1,7 @@
+[
+  {
+    "method": "GET",
+    "model": "client",
+    "expect": 401
+  }
+]

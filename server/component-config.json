@@ -1,0 +1,18 @@
+{
+	"loopback-component-access-groups": {
+		"userModel": "Client",
+		"roleModel": "Role",
+		"groupAccessModel": "ClientGroup",
+		"groupModel": "Group",
+		"foreignKey": "groupId",
+		"groupRoles": [
+			"$group:admin",
+			"$group:manager",
+			"$group:member"
+		],
+		"applyToStatic": true
+	},
+	"loopback-component-explorer": {
+		"mountPath": "/explorer"
+	}
+}
