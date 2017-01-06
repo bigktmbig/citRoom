@@ -8,7 +8,7 @@
  angular.module('myappApp')
  .config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
     function($stateProvider, $urlRouterProvider, $locationProvider) {
-        
+
             // Public routes
             $stateProvider
             .state('public', {
@@ -16,7 +16,7 @@
                 template: "<ui-view/>",
                 data: {
                     permissions: {
-                        only: ['anonymous']
+                        only: ['anonymous','member','manager','admin','big']
                     }
                 }
             })
@@ -24,17 +24,37 @@
             .state('public.main', {
                 url: '/',
                 templateUrl: 'views/main.html',
-                controller: 'MainCtrl'
-            })
-            .state('public.login', {
-                url: '/login',
-                templateUrl: 'views/login.html',
-                controller: 'LoginCtrl'
+                controller: 'MainCtrl',
+                data: {
+                    permissions: {
+                        only: ['anonymous']
+                    }
+                }
             })
             .state('public.about', {
                 url: '/about',
                 templateUrl: 'views/about.html',
                 controller: 'AboutCtrl'
+            })
+            .state('public.login', {
+                url: '/login',
+                templateUrl: 'views/login.html',
+                controller: 'LoginCtrl',
+                data: {
+                    permissions: {
+                        only: ['anonymous']
+                    }
+                }
+            })
+            .state('public.register', {
+                url: '/register',
+                templateUrl: 'views/register.html',
+                controller: 'RegisterCtrl',
+                data: {
+                    permissions: {
+                        only: ['anonymous']
+                    }
+                }
             })
 
             // user routes mastering setting
@@ -44,7 +64,7 @@
                 template: "<ui-view/>",
                 data: {
                     permissions: {
-                        only: ['member,manager,admin']
+                        only: ['member','manager','admin','big']
                     }
                 }
             })
@@ -53,11 +73,21 @@
                 templateUrl: 'views/homepage.html',
                 controller: 'HomepageCtrl'
             })
+            .state('homepage.profile', {
+                url: '/profile',
+                templateUrl: 'views/profile.html',
+                controller: 'ProfileCtrl'
+            })
 
             // For unmatched routes
             $urlRouterProvider.otherwise('/');
+            // $locationProvider.html5Mode({
+            //     enabled: true,
+            //     requireBase: false
+            // });
             // enable html5Mode for pushstate ('#'-less URLs)
             // $locationProvider.html5Mode(true);
             // $locationProvider.hashPrefix('!');
         }
         ]);
+ 

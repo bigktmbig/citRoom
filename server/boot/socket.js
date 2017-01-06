@@ -1,4 +1,8 @@
 module.exports = function socket_ioEx(server) {
+  var uuid = require('node-uuid'),
+  rooms = {},
+  userIds = {};
+  
   server.io = require('socket.io')(server.start());
   server.io.on('connection', function(socket){
     console.log('a user connected');

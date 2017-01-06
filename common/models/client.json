@@ -9,7 +9,13 @@
   "properties": {},
   "validations": [],
   "relations": {
-     "groups": {
+    "roles": {
+      "type": "hasMany",
+      "foreignKey": "principalId",
+      "mode": "Role",
+      "through": "RoleMapping"
+    },
+    "groups": {
       "type": "hasMany",
       "model": "Group",
       "foreignKey": "userId",

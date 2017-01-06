@@ -3,10 +3,7 @@ var boot = require('loopback-boot');
 
 var app = module.exports = loopback();
 
-var http = require('http'),
-uuid = require('node-uuid'),
-rooms = {},
-userIds = {};
+var http = require('http');
 
 app.use(loopback.token({ model: app.models.AccessToken, currentUserLiteral: 'me' }))
 

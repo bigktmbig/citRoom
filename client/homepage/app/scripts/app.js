@@ -20,7 +20,11 @@ angular
   'cfp.loadingBar',
   'permission',
   'lbServices',
-  'services.config'
+  'services.config',
+  'validation',
+  'validation.rule',
+  'validation.customer',
+  'btford.socket-io'
   ])
 //config when before run up
 .run(['$rootScope', '$state', 'Auth', '$cookieStore', function($rootScope, $state, Auth) {
@@ -47,7 +51,9 @@ angular
 }])
 //define roles
 .run(function(Permission, Auth) {
-  Permission.defineRole('anonymous', function() {
+  Permission.defineRole('public', function() {
+    return true;
+  }).defineRole('anonymous', function() {
     if (!Auth.isLoggedIn()) {
       return true;
     } else {
@@ -55,12 +61,15 @@ angular
     }
   }).defineRole('member', function() {
     var roles = Auth.user.roles;
-    return roles.indexOf('member') !== -1;
+    return roles.indexOf('member') > -1;
   }).defineRole('manager', function() {
     var roles = Auth.user.roles;
-    return roles.indexOf('manager') !== -1;
+    return roles.indexOf('manager') > -1;
   }).defineRole('admin', function() {
     var roles = Auth.user.roles;
-    return roles.indexOf('admin') !== -1;
+    return roles.indexOf('admin') > -1;
+  }).defineRole('big', function() {
+    var roles = Auth.user.roles;
+    return roles.indexOf('big') > -1;
   });
 });

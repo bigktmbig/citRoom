@@ -1,1 +1,41 @@
-<p>This is the login view.</p>
+<div class="header"></div>
+<div class="container">
+	<form id="login_form" name="loginForm">
+		<div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+			<div class="col-md-12 col-sm-12 ">
+				<div class="alert {{json.class}}" role="alert" ng-show="json.on">
+					<strong>{{json.status}}!</strong>{{json.message}}
+				</div>
+			</div>
+		</div>
+		<div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+			<div class="col-md-12 col-sm-12 ">
+				<div class="input-group">
+					<span class="input-group-addon primary">
+						<span class="arrow"></span>
+						<i class="fa fa-envelope"></i>
+					</span>
+					<input type="text" ng-model="login_form.email" name="email" class="form-control" placeholder="Email" validator="required" message-id="emaillgSubmit"/>
+				</div>
+				<span id="emaillgSubmit" ng-hide="login_form.checkValid(loginForm)"></span>
+			</div>
+		</div>
+		<div style="height:20px;" class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10"></div>
+		<div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+			<div class="col-md-12 col-sm-12">
+				<div class="input-group">
+					<span class="input-group-addon primary">
+						<span class="arrow"></span>
+						<i class="fa fa-key"></i>
+					</span>
+					<input type="password" ng-model="login_form.password" name="password" class="form-control loginTB" placeholder="Password" validator="required" message-id="passwordlgSubmit"/>
+				</div>
+				<span id="passwordlgSubmit" ng-hide="login_form.checkValid(loginForm)"></span>
+			</div>
+		</div>
+		<div class="row form-row m-l-20 m-r-20 xs-m-l-10 xs-m-r-10">
+			<button ng-click="login_form.submit(loginForm)" style="margin:10px 14px;" type="button" class="btn btn-primary btn-cons pull-right" id="login_toggle">Login</button>
+		</div>
+	</form>
+</div>
+<div class="footer"></div>
