@@ -8,7 +8,7 @@ module.exports = function(Client) {
         if (ctx.result.userId) {
             Client.findById(ctx.result.userId, function(err, client) {
                 if (err) throw err;
-                var arrRoles = [];
+                var arrRoles = ['member'];
                 client.roles(function(err, roles) {
                     if (roles.length > 0) {
                         roles.map(function(item) {

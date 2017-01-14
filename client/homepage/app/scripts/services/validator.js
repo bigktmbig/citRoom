@@ -1,3 +1,5 @@
+'use strict';
+
 (function() {
 	angular
 	.module('validation.customer', ['validation'])
@@ -8,14 +10,12 @@
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
     angular.extend($validationProvider, {
     	validCallback: function (element){
-    		$(element).parents('.form-group:first').removeClass('has-error');
-    		$(element).parents('.input-event:first').removeClass('has-error');
+    		$(element).parents('.input-group:first').removeClass('has-error');
             $(".validation-valid").hide();
         },
         invalidCallback: function (element) {
-        	$(element).parents('.form-group:first').addClass('has-error');
-        	$(element).parents('.input-event:first').addClass('has-error');
-            //$(".validation-invalid").hide();
+        	$(element).parents('.input-group:first').addClass('has-error');
+            $(".validation-invalid").hide();
         }
     })
 

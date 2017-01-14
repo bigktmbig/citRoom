@@ -6,24 +6,29 @@
  * @description
  * # header
  */
-angular.module('myappApp')
-  .directive('header', function (Auth) {
+ angular.module('myappApp')
+ .directive('header', function (Auth) {
  	return {
- 		templateUrl: 'scripts/directives/header_directive.html',
+ 		templateUrl: 'views/header.html',
  		restrict: 'C',
- 		link: function postLink($scope) {
+ 		link: function postLink($scope, $location) {
  			$scope.logout = function(){
- 				var user = { 
- 					email: '',
- 					roles: ['anonymous'],
- 					accessToken: '',
- 					userId: null
- 				};
- 				Auth.logout(user);
+ 				Auth.changeOnOff(false);
  			};
  			$scope.isLogin = Auth.isLoggedIn();
  		},
- 		controller : function($scope, Auth){
+ 		controller : function($scope, Auth, $location){
+ 			$scope.isActive = function (viewLocation) { 
+ 				// console.log(viewLocation);
+ 				// console.log($location.path());
+ 				return viewLocation === $location.path();
+ 			};
+
+ 			$scope.toTheTop = function() {
+ 				$document.scrollTopAnimated(0, 1000).then(function() {
+ 					console && console.log('You just scrolled to the top!');
+ 				});
+ 			}
  			$scope.isLogin = Auth.isLoggedIn();
  			$scope.avatarUser = null;
  		}

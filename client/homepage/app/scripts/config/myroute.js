@@ -36,6 +36,11 @@
                 templateUrl: 'views/about.html',
                 controller: 'AboutCtrl'
             })
+            .state('public.contact', {
+                url: '/contact',
+                templateUrl: 'views/contact.html',
+                controller: 'ContactCtrl'
+            })
             .state('public.login', {
                 url: '/login',
                 templateUrl: 'views/login.html',
@@ -69,7 +74,7 @@
                 }
             })
             .state('homepage.main', {
-                url: '/homepage',
+                url: '/our-house',
                 templateUrl: 'views/homepage.html',
                 controller: 'HomepageCtrl'
             })

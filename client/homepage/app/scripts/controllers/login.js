@@ -34,9 +34,9 @@
 
  	/*listen event cit_login success*/
  	var destroy_cit_login_suc = $scope.$on('cit_login_suc', function (event, data){
- 		console.log(data);
- 		destroy_cit_login_suc();
+ 		//console.log(data);
  		var userIsu = {
+ 			name: data.user.name || '',
  			email: data.user.email,
  			roles: data.roles,
  			accessToken: data.id,
@@ -44,12 +44,13 @@
  		};
  		$cookieStore.put('currentUser', userIsu);
  		Auth.setUser(userIsu);
- 		$location.path('/homepage');
+ 		Auth.changeOnOff(true);
+ 		destroy_cit_login_suc();
  	});
 
  	/*listen event cit_login error*/
  	var destroy_cit_login_err = $scope.$on('cit_login_err', function (event, data){
- 		console.log(data);
+ 		//console.log(data);
  		$scope.json = {
  			on: true,
  			message: data.data.error.message,
@@ -68,7 +69,10 @@
  				/*call cit login*/
  				cit_login({
  					email: $scope.login_form.email,
- 					password: $scope.login_form.password
+ 					password: $scope.login_form.password,
+ 					filter:{
+ 						include: {relation: "user"}
+ 					}
  				});
  			})
  			.error(function(error){

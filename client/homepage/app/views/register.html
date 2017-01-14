@@ -1,5 +1,73 @@
 <div class="header"></div>
-<div class="container">
-	<p>This is the register view.</p>
+<div class="container-fluid">
+	<form id="register_form" name="registerForm">
+		<div class="col-md-12 col-sm-12 col-xs-12 text-center">
+			<h3>Cit Room Register</h3>
+			<div class="row">
+				<div class="col-md-4 col-sm-3"></div>
+				<div class="col-md-4 col-sm-6">
+					<div class="col-md-12 col-sm-12 ">
+						<div class="alert {{json.class}}" role="alert" ng-show="json.on">
+							<strong>{{json.status}}!</strong>{{json.message}}
+						</div>
+					</div>
+					<div class="col-md-12 col-sm-12 ">
+						<div class="input-group">
+							<span class="input-group-addon primary">
+								<span class="arrow"></span>
+								<i class="fa fa-user icon-user"></i>
+							</span>
+							<input type="text" ng-model="register_form.firstName" name="firstName" class="form-control" placeholder="First name" validator="required" message-id="firstNamelgSubmit"/>
+						</div>
+						<span id="firstNamelgSubmit" ng-hide="register_form.checkValid(registerForm)"></span>
+					</div>
+					<div class="col-md-12 col-sm-12 ">
+						<div class="input-group">
+							<span class="input-group-addon primary">
+								<span class="arrow"></span>
+								<i class="fa fa-user icon-user"></i>
+							</span>
+							<input type="text" ng-model="register_form.lastName" name="lastName" class="form-control" placeholder="Last name" validator="required" message-id="lastNamelgSubmit"/>
+						</div>
+						<span id="lastNamelgSubmit" ng-hide="register_form.checkValid(registerForm)"></span>
+					</div>
+					<div class="col-md-12 col-sm-12 ">
+						<div class="input-group">
+							<span class="input-group-addon primary">
+								<span class="arrow"></span>
+								<i class="fa fa-envelope"></i>
+							</span>
+							<input type="text" ng-model="register_form.email" name="email" class="form-control" placeholder="Email" validator="required" message-id="emaillgSubmit"/>
+						</div>
+						<span id="emaillgSubmit" ng-hide="register_form.checkValid(registerForm)"></span>
+					</div>
+					<div class="col-md-12 col-sm-12">
+						<div class="input-group">
+							<span class="input-group-addon primary">
+								<span class="arrow"></span>
+								<i class="fa fa-key"></i>
+							</span>
+							<input type="password" ng-model="register_form.password" name="password" class="form-control loginTB" placeholder="Password" validator="required,ispassword" message-id="passwordlgSubmit"/>
+						</div>
+						<span id="passwordlgSubmit" ng-hide="register_form.checkValid(registerForm)"></span>
+					</div>
+					<div class="col-md-12 col-sm-12">
+						<div class="input-group">
+							<span class="input-group-addon primary">
+								<span class="arrow"></span>
+								<i class="fa fa-key"></i>
+							</span>
+							<input type="password" ng-model="register_form.repassword" name="repassword" class="form-control loginTB" validator-password="{{register_form.password}}" placeholder="Re-Password" validator="required,matching" message-id="repasswordlgSubmit"/>
+						</div>
+						<span id="repasswordlgSubmit" ng-hide="register_form.checkValid(registerForm)"></span>
+					</div>
+					<div class="col-md-12 col-sm-12">
+						<button ng-click="register_form.submit(registerForm)" class="btn btn-primary btn-cons pull-right btn-custom" id="login_toggle">Register</button>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-3"></div>
+			</div> 
+		</div>
+	</form>
 </div>
 <div class="footer"></div>

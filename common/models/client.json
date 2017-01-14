@@ -6,7 +6,25 @@
   "options": {
     "validateUpsert": true
   },
-  "properties": {},
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": false
+    },
+    "onOff": {
+      "type": "boolean",
+      "required": false,
+      "defaultValue": false
+    },
+    "firstName": {
+      "type": "string",
+      "required": false
+    },
+    "lastName": {
+      "type": "string",
+      "required": false
+    }
+  },
   "validations": [],
   "relations": {
     "roles": {
@@ -56,11 +74,39 @@
       "property": "create"
     },
     {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "find"
+    },
+    {
       "accessType": "*",
       "principalType": "ROLE",
       "principalId": "$everyone",
       "permission": "ALLOW",
       "property": "currentUser"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "findById"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "updateAttributes"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "DENY",
+      "property": "deleteById"
     }
   ],
   "methods": {

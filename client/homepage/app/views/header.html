@@ -1,0 +1,36 @@
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <a class="navbar-brand  home-symbol" ng-class="{ active: isActive('/')}" ui-sref="public.main" ng-show="!isLogin"><i class="fa fa-home" aria-hidden="true"></i></a>
+      <a class="navbar-brand home-symbol" ng-class="{ active: isActive('/our-house')}" ui-sref="homepage.main" ng-show="isLogin"><i class="fa fa-home" aria-hidden="true"></i></a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="js-navbar-collapse">
+
+      <ul class="nav navbar-nav nav-menu">
+        <li ng-class="{ active: isActive('/contact')}"><a ui-sref="public.contact">CONTACT</a></li>
+        <li ng-class="{ active: isActive('/about')}"><a ui-sref="public.about">ABOUT</a></li>
+        <li ng-class="{ active: isActive('/login')}" ng-show="!isLogin"><a ui-sref="public.login">LOGIN</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="nav-menu btn-login" ng-class="{ active: isActive('/register')}" ng-show="!isLogin"><a href="" ui-sref="public.register">REGISTER NOW! </a></li>
+        <li class="dropdown" ng-show="isLogin">
+          <a href="dropdown" id="dropdownMenu" data-toggle="dropdown"><img src="{{avatarUser|setImage:'thumb':'user'}}" class="img-circle avatar-circle"/><i class="fa fa-caret-down" style="font-size: 20px ; padding-left: 5px"></i></a>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="" ui-sref="homepage.profile"><i class="fa fa-user"></i> PROFILE</a></li>
+            <li role="presentation" class="divider"></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="" ng-click="logout();"><i class="fa fa-sign-out"></i> LOGOUT</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

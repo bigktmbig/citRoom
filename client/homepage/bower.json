@@ -21,7 +21,9 @@
     "angular-ui-router": "^0.3.2",
     "angular-validation": "^1.4.2",
     "font-awesome": "Font-Awesome#^4.7.0",
-    "angular-socket-io": "^0.7.0"
+    "angular-socket-io": "^0.7.0",
+    "socket.io-client": "^1.7.2",
+    "alertify.js": "^0.3.11"
   },
   "appPath": "app",
   "moduleName": "myappApp",

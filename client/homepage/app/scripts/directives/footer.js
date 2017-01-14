@@ -9,18 +9,10 @@
 angular.module('myappApp')
   .directive('footer', function (Auth) {
   return {
-    templateUrl: 'scripts/directives/footer_directive.html',
+    templateUrl: 'views/footer.html',
     restrict: 'C',
     link: function postLink(scope) {
-      scope.logout = function(){
-        var user = { 
-          username: '',
-          roles: ['anonymous'],
-          accessToken: '',
-          userId: null
-        };
-        Auth.logout(user);
-      };
+      
     }
   };
  });

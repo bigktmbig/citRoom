@@ -1,5 +1,66 @@
 <div class="header"></div>
-<div class="container">
-	<p>This is the homepage view.</p>
+<div class="container-fluid">
+	<div class="col-md-12 col-sm-12 col-xs-12">
+		<div class="row">
+			<div class="col-md-3 col-sm-3 col-xs-3">
+				<div class="sidebar-nav-fixed left-bar">
+					<div class="col-md-12 input-group">
+						<ul id="list_group" class="nav nav-tabs tabs-left sideways">
+							<li ng-repeat="group in list_group" ng-class="($index==0)?'active': ''">
+								<a ng-click="join_group(group.id)" href="#group_tab{{group.id}}" data-toggle="tab">{{group.name}}</a>
+							</li>
+						</ul>
+					</div>
+					<div class="col-md-12 input-group">
+						<hr/>
+						<div class="tab-content">
+							<div ng-repeat="group in list_group" ng-class="($index==0)?'tab-pane active': 'tab-pane'" id="group_tab{{group.id}}">
+								<ul id="messages{{group.id}}">
+									<li>
+										<span class="head-title">{{group.name}} posts</span>
+									</li>
+									<li ng-repeat="post in list_post">
+										
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="col-md-12 input-group">
+						<form name="formChat" id="form_chat">
+							<input class="input-val input-message" name="yourMessage" ng-model="your_message" placeholder="Enter your message" validator="required" message-id="your_message_sub">
+							<span id="your_message_sub" ng-hide="form_chat.checkValid(formChat)"></span>
+							<button class="btn btn-info btn-send" type="submit" ng-click="form_chat.submit(formChat)">SEND</button>
+						</form>
+					</div>
+					<div class="col-md-12 input-group">
+						<hr class="hr-advertise">
+						<div class="clearfix"></div>
+					</div>
+					<div class="col-md-12 input-group">
+						<div class="wrap-advertise">
+							<div class="advertise">
+								Hello! This is my advertise.
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-7 col-sm-7 col-xs-6 border-line" style="background:#222222;height:800px;">
+				content
+			</div>
+			<div class="col-md-2 col-sm-2 col-xs-3">
+				<div class="sidebar-nav-fixed affix right-bar">
+					<div class="" ng-repeat="user in list_user" ng-if="current_user.userId!=user.id">
+						<a href="" ng-click="">
+							<img class="img-circle" width="30" height="30" src="{{user.avatar|setImage:'thumb':'user'}}" />
+							<span>{{user.name}}</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 <div class="footer"></div>

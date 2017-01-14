@@ -40,11 +40,19 @@
 })
  .filter('setImage', function() {
     return function (item, size, type) {
-        return 'images/user.jpg';
+        if(!item) {
+            return 'images/user.jpg';
+        }
     };
 })
  .factory('mySocket', function (socketFactory) {
-  return socketFactory();
+    var myIoSocket = io.connect('http://localhost:3000');
+
+    var mySocket = socketFactory({
+        ioSocket: myIoSocket
+    });
+
+    return mySocket;
 });
 // .filter('setImage', function(store_S3) {
 //   return function (item, size, type) {

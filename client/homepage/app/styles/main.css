@@ -40,7 +40,9 @@ body {
 .container-narrow > hr {
   margin: 30px 0;
 }
-
+a {
+  color: #ffffff;
+}
 /* Main marketing message and sign up button */
 .jumbotron {
   text-align: center;
@@ -91,4 +93,118 @@ body {
   color: #FF4136;
   position: absolute;
   font-size: 0.95em;
+}
+.has-error .input-val {
+  border-color: #ff413c;
+}
+.input-val {
+  display: block;
+  margin-left: 5px;
+  width: 80%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.428571429;
+  color: #555;
+  vertical-align: middle;
+  background-color: #fff;
+  background-image: none;
+}
+.navbar-default .navbar-nav>.active>a, 
+.navbar-default .navbar-nav>.active>a:focus, 
+.navbar-default .navbar-nav>.active>a:hover {
+  color: #ffffff;
+  background-color: #5e5e5e;
+  border-radius: 3px;
+}
+.home-symbol {
+  font-size: 2.2em;
+}
+.nav-menu {
+  padding: 7px 0px;
+}
+.border-line {
+  border: 1px solid #5e5e5e;
+}
+
+.btn-custom {
+  width:80px;
+}
+.input-group {
+  margin-bottom: 5px;
+}
+.hr-advertise {
+  color: #ffffff;
+  font-size: 15px;
+}
+.wrap-advertise {
+  /*padding: 20px 20px;*/
+}
+.avatar-circle {
+  width: 35px;
+  height: 35px;
+}
+.btn-send {
+  position: absolute;
+  margin-right: 3px;
+  top: 0;
+  right: 0;
+  z-index: 9;
+}
+.advertise {
+  height: 182px;
+  margin: 0px 4px 0px 5px;
+  background: #ffffff;
+}
+/*leftbar style*/
+.left-bar {
+  min-height: 800px;
+  background: #3c763d;
+}
+.tabs-left {
+  border-bottom: none;
+  padding-top: 4px;
+}
+.tabs-left>li {
+  float: none;
+}
+.tabs-left>li {
+  margin: 0px 2px 2px 5px;
+}
+.tabs-left>li.active>a,
+.tabs-left>li.active>a:hover,
+.tabs-left>li.active>a:focus {
+  border-bottom-color: #ddd;
+  border-right-color: transparent;
+}
+
+.tabs-left>li>a {
+  border-radius: 4px 4px;
+  display:block;
+}
+.tab-content {
+  overflow-x: auto;
+  height: 300px;
+  margin: 0px 4px 0px 5px;
+  background: #ffffff;
+}
+/*content style*/
+.container-fluid {
+  margin-top: 87px;
+}
+/*rightbar style*/
+.right-bar {
+  width: 100%;
+  height: 519px;
+  background:#3c763d;
+}
+.right-bar a span {
+  color: #ffffff;
+}
+.head-title {
+  font-size: 18px;
+  color: #222222;
+}
+.icon-user {
+  font-size: 19px;
 }

@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('myappApp')
-.factory('Auth', function ($http, Client, $location, $rootScope, $cookieStore) {
+.factory('Auth', function ($http, Client, $location, $rootScope, $cookieStore, $q) {
 
     var currentUser = $cookieStore.get('currentUser') || {
+        name: '',
         email: '',
         roles: ['anonymous'],
         accessToken: '',
@@ -15,6 +16,33 @@ angular.module('myappApp')
     function changeUser(user) {
         angular.extend(currentUser, user);
     }
+    function changeOnOff(state) {
+        var def = $q.defer();
+        Client
+        .prototype$updateAttributes({
+            id: currentUser.userId,
+            onOff: state,
+        })
+        .$promise
+        .then(function(response){
+            def.resolve(response);
+        }, function(err){
+            def.reject(err);
+        });
+        return def.promise;
+    };
+    function logout(user) {
+        Client
+        .logout()
+        .$promise
+        .then(function(response){
+            $cookieStore.remove('currentUser');
+            changeUser(user);
+            $location.path('/login');
+        }, function(err){
+            console.log(err);
+        });
+    };
     return {
         authorize: function(pesrmissions, roles) {
             var rs = false;
@@ -47,8 +75,10 @@ angular.module('myappApp')
             return currentUser.accessToken !== '';
         },
         register: function(email, password) {
+            var name = email.split("@")[0];
             Client
             .create({
+                name: name,
                 email: email,
                 password: password
             })
@@ -57,17 +87,39 @@ angular.module('myappApp')
         setUser: function(user){
             changeUser(user);
         },
-        logout: function(user){
-            Client
-            .logout()
-            .$promise
-            .then(function(response){
-                $cookieStore.remove('currentUser');
-                changeUser(user);
-                $location.path('/login');
-            }, function(err){
-                console.log(err);
+        changeOnOff: function(state, userId){
+            changeOnOff(state).then(function (data) {
+                if(state == true){
+                    if (data && data.onOff == true) {
+                        $location.path('/our-house');
+                        alertify.log('You are onlining');
+                    }
+                }else {
+                    if (data && data.onOff == false) {
+                        var user = {
+                            name: '',
+                            email: '',
+                            roles: ['anonymous'],
+                            accessToken: '',
+                            userId: null
+                        };
+                        logout(user);
+                        alertify.log('You are offlining');
+                    }
+                }
+            }, function(reason) {
+                console.log(reason);
+                if(state == true){
+                    $location.path('/login');
+                    alertify.error('Login failed');
+                }else {
+                    $location.path('/our-house');
+                    alertify.error('Logout failed');
+                }
             });
+        },
+        logout: function(user){
+            logout(user);
         },
         user: currentUser
     };
