@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myappApp')
-.factory('Auth', function ($http, Client, $location, $rootScope, $cookieStore, $q) {
+.factory('Auth', function ($http, Client, $location, $rootScope, $cookieStore, $q, $state, $socket) {
 
     var currentUser = $cookieStore.get('currentUser') || {
         name: '',
@@ -38,7 +38,9 @@ angular.module('myappApp')
         .then(function(response){
             $cookieStore.remove('currentUser');
             changeUser(user);
-            $location.path('/login');
+            $socket.removeAllListeners('group chat message');
+            $state.go('public.login', { reload: true, notify: false });
+            //$location.path('/login');
         }, function(err){
             console.log(err);
         });
@@ -91,7 +93,8 @@ angular.module('myappApp')
             changeOnOff(state).then(function (data) {
                 if(state == true){
                     if (data && data.onOff == true) {
-                        $location.path('/our-house');
+                        //$location.path('/our-house');
+                        $state.go('homepage.main', { reload: true, notify: false });
                         alertify.log('You are onlining');
                     }
                 }else {
@@ -113,6 +116,7 @@ angular.module('myappApp')
                     $location.path('/login');
                     alertify.error('Login failed');
                 }else {
+                    //$state.go('homepage.main', {}, { reload: true, location: true, notify: false });
                     $location.path('/our-house');
                     alertify.error('Logout failed');
                 }

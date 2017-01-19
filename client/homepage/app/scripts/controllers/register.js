@@ -25,39 +25,36 @@
  		.$promise
  		.then( function(response){
  			$timeout(function(){
- 				$scope.$broadcast('cit_login_suc', response);
+ 				$scope.$broadcast('cit_login', response);
  			});
  		}, function(error){
- 			$scope.$broadcast('cit_login_err', error);
+ 			$scope.$broadcast('cit_login', error);
  		});
  	};
 
  	/*listen event cit_login success*/
- 	var destroy_cit_login_suc = $scope.$on('cit_login_suc', function (event, data){
+ 	var destroy_cit_login = $scope.$on('cit_login', function (event, data){
  		//console.log(data);
- 		var userIsu = {
- 			name: data.user.name || '',
- 			email: data.user.email,
- 			roles: data.roles,
- 			accessToken: data.id,
- 			userId: data.userId
- 		};
- 		$cookieStore.put('currentUser', userIsu);
- 		Auth.setUser(userIsu);
- 		Auth.changeOnOff(true);
- 		destroy_cit_login_suc();
- 	});
-
- 	/*listen event cit_login error*/
- 	var destroy_cit_login_err = $scope.$on('cit_login_err', function (event, data){
- 		//console.log(data);
- 		$scope.json = {
- 			on: true,
- 			message: data.data.error.message,
- 			status: data.status + ' ' + data.statusText,
- 			class: 'alert-warning'
- 		};
- 		destroy_cit_login_err();
+ 		if(data && data.data && data.data.error) {
+ 			$scope.json = {
+ 				on: true,
+ 				message: data.data.error.message,
+ 				status: data.status + ' ' + data.statusText,
+ 				class: 'alert-warning'
+ 			};
+ 		}else {
+ 			var userIsu = {
+ 				name: data.user.name || '',
+ 				email: data.user.email,
+ 				roles: data.roles,
+ 				accessToken: data.id,
+ 				userId: data.userId
+ 			};
+ 			$cookieStore.put('currentUser', userIsu);
+ 			Auth.setUser(userIsu);
+ 			Auth.changeOnOff(true);
+ 		}
+ 		destroy_cit_login();
  	});
 
  	/*execute register via Client model*/
@@ -67,31 +64,27 @@
  		.$promise
  		.then( function(response){
  			$timeout(function(){
- 				$scope.$broadcast('cit_register_suc', {data: response, obj: object});
+ 				$scope.$broadcast('cit_register', {data: response, obj: object});
  			});
  		}, function(error){
- 			$scope.$broadcast('cit_register_err', error);
+ 			$scope.$broadcast('cit_register', error);
  		});
  	};
 
  	/*listen event cit_register success*/
- 	var destroy_cit_register_suc = $scope.$on('cit_register_suc', function (event, data){
+ 	var destroy_cit_register = $scope.$on('cit_register', function (event, data){
  		//console.log(data);
- 		cit_login(data.obj);
- 		destroy_cit_register_suc();
- 	});
-
- 	/*listen event cit_register error*/
- 	var destroy_cit_register_err = $scope.$on('cit_register_err', function (event, data){
- 		//console.log(data);
- 		$scope.json = {
- 			on: true,
- 			message: data.data.error.message,
- 			status: data.status + ' ' + data.statusText,
- 			class: 'alert-warning'
- 		};
- 		$location.path('/register');
- 		destroy_cit_register_err();
+ 		if(data && data.data && data.data.error) {
+ 			$scope.json = {
+ 				on: true,
+ 				message: data,
+ 				status: data.status + ' ' + data.statusText,
+ 				class: 'alert-warning'
+ 			};
+ 		}else {
+ 			cit_login(data.obj);
+ 		}
+ 		destroy_cit_register();
  	});
 
  	/*validation register form*/
@@ -111,7 +104,6 @@
  				});
  			})
  			.error(function(error){
- 				$location.path('/register');
  			});
  		}
  	};

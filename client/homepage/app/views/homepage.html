@@ -47,16 +47,29 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-7 col-sm-7 col-xs-6 border-line" style="background:#222222;height:800px;">
+			<div class="col-md-7 col-sm-7 col-xs-6" style="background:#fff;height:800px;">
 				content
+				<!-- chat dialog -->
+				<div class="col-md-12 input-group">
+					<div id="chat-dialog" ng-if="isLogin">
+						<div class="wrap-chat-dialog"></div>
+					</div>
+				</div>
+				<div class="clearfix"></div>
 			</div>
 			<div class="col-md-2 col-sm-2 col-xs-3">
-				<div class="sidebar-nav-fixed affix right-bar">
-					<div class="" ng-repeat="user in list_user" ng-if="current_user.userId!=user.id">
-						<a href="" ng-click="">
-							<img class="img-circle" width="30" height="30" src="{{user.avatar|setImage:'thumb':'user'}}" />
-							<span>{{user.name}}</span>
-						</a>
+				<div class="sidebar-nav-fixed affix">
+					<div class="right-bar">
+						<div class="wrap-right">
+							<ul>
+								<li class="" ng-repeat="user in list_user" ng-if="current_user.userId!=user.id">
+									<a href="" ng-click="">
+										<img class="img-circle" width="30" height="30" src="images/user.jpg" />
+										<span>{{user.name}}</span>
+									</a>
+								</li>
+							</ul>
+						</div>
 					</div>
 				</div>
 			</div>

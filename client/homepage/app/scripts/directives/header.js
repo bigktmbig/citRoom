@@ -7,7 +7,7 @@
  * # header
  */
  angular.module('myappApp')
- .directive('header', function (Auth) {
+ .directive('header', function (Auth, $document) {
  	return {
  		templateUrl: 'views/header.html',
  		restrict: 'C',
@@ -17,7 +17,7 @@
  			};
  			$scope.isLogin = Auth.isLoggedIn();
  		},
- 		controller : function($scope, Auth, $location){
+ 		controller : function($scope, Auth, $location, $document){
  			$scope.isActive = function (viewLocation) { 
  				// console.log(viewLocation);
  				// console.log($location.path());

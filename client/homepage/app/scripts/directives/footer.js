@@ -6,13 +6,15 @@
  * @description
  * # footer
  */
-angular.module('myappApp')
-  .directive('footer', function (Auth) {
-  return {
-    templateUrl: 'views/footer.html',
-    restrict: 'C',
-    link: function postLink(scope) {
-      
-    }
-  };
+ angular.module('myappApp')
+ .directive('footer', function (Auth) {
+ 	return {
+ 		templateUrl: 'views/footer.html',
+ 		restrict: 'C',
+ 		link: function postLink(scope) {
+ 		},
+ 		controller : function($scope, Auth){
+ 			$scope.isLogin = Auth.isLoggedIn();
+ 		}
+ 	};
  });

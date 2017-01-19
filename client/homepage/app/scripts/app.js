@@ -24,31 +24,35 @@ angular
   'validation',
   'validation.rule',
   'validation.customer',
-  'btford.socket-io'
+  'ngSocket',
+  'duScroll'
   ])
-//config when before run up
-.run(['$rootScope', '$state', 'Auth', '$cookieStore', function($rootScope, $state, Auth) {
-  $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams) {
-    //console.log(toState.data.permissions);
-    if (!('data' in toState) || !('permissions' in toState.data)) {
-      $rootScope.error = "Access undefined for this state";
-      event.preventDefault();
-    } else if (!Auth.authorize(toState.data.permissions)) {
-      $rootScope.error = "Seems like you tried accessing a route you don't have access to...";
-      event.preventDefault();
-      if (fromState.url === '^') {
-        if (Auth.isLoggedIn() === true) {
-          $rootScope.error = null;
-          $state.go('homepage.main');
-        }else {
-          $rootScope.error = null;
-          $state.go('public.main');
-        }
-      }
-    }
-  });
-
+.config(["$socketProvider", function ($socketProvider) {
+  $socketProvider.setUrl("http://localhost:3000");
 }])
+//config when before run up
+// .run(['$rootScope', '$state', 'Auth', '$cookieStore', function($rootScope, $state, Auth) {
+//   $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams) {
+//     //console.log(toState.data.permissions);
+//     if (!('data' in toState) || !('permissions' in toState.data)) {
+//       $rootScope.error = "Access undefined for this state";
+//       event.preventDefault();
+//     } else if (!Auth.authorize(toState.data.permissions)) {
+//       $rootScope.error = "Seems like you tried accessing a route you don't have access to...";
+//       event.preventDefault();
+//       if (fromState.url === '^') {
+//         if (Auth.isLoggedIn() === true) {
+//           $rootScope.error = null;
+//           $state.go('homepage.main');
+//         }else {
+//           $rootScope.error = null;
+//           $state.go('public.main');
+//         }
+//       }
+//     }
+//   });
+
+// }])
 //define roles
 .run(function(Permission, Auth) {
   Permission.defineRole('public', function() {

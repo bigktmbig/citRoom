@@ -39,55 +39,16 @@
     };
 })
  .filter('setImage', function() {
-    return function (item, size, type) {
-        if(!item) {
-            return 'images/user.jpg';
-        }
+    return function (item, type) {
+        return 'images/user.jpg';
     };
-})
- .factory('mySocket', function (socketFactory) {
-    var myIoSocket = io.connect('http://localhost:3000');
-
-    var mySocket = socketFactory({
-        ioSocket: myIoSocket
-    });
-
-    return mySocket;
 });
-// .filter('setImage', function(store_S3) {
-//   return function (item, size, type) {
-//     return 'images/user.jpg';
-    // var link_image ='';
-    //     //check item exist
-    //     if(item){
-    //       switch (size){
-    //             //size is thumb
-    //             case 'thumb':
-    //             link_image = "https://" + store_S3.koreplatform +".s3.amazonaws.com/thumb/"+ item;
-    //             break;
-    //             //size is medium
-    //             case 'medium':
-    //             link_image = "https://" + store_S3.koreplatform +".s3.amazonaws.com/medium/"+ item;
-    //             break;
-    //             case 'default':
-    //             link_image = item;
-    //             break;
-    //         }
-    //     }else{
-    //       switch (type){
-    //         case 'user':
-    //         link_image = 'images/defaults/user.jpg';
-    //         break;
+//  .factory('mySocket', function (socketFactory) {
+//     var myIoSocket = io.connect('http://localhost:3000');
 
-    //         case 'company':
-    //         link_image = 'images/defaults/company.png';
-    //         break;
+//     var mySocket = socketFactory({
+//         ioSocket: myIoSocket
+//     });
 
-    //         case 'chart':
-    //         link_image = 'images/Opportunity/chart.png';
-    //         break;
-    //     }
-    // }
-    // return link_image;
-// };
-// })
+//     return mySocket;
+// });

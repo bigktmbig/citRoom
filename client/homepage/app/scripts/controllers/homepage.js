@@ -8,7 +8,7 @@
 * Controller of the myappApp
 */
 angular.module('myappApp')
-.controller('HomepageCtrl', function ($scope, Auth, mySocket, $injector, $timeout, Group, Client) {
+.controller('HomepageCtrl', function ($scope, $state, Auth, $socket, $injector, $timeout, Group, Client) {
 	var $validationProvider = $injector.get('$validation');
 
 	$scope.list_group = [];
@@ -92,7 +92,7 @@ angular.module('myappApp')
 		submit: function(form) {
 			$validationProvider.validate(form)
 			.success(function(res){
-				mySocket.emit('group chat message', {'msg':$scope.your_message, 'groupId': $scope.current_group, 'user': $scope.current_user});
+				$socket.emit('group chat message', {'msg':$scope.your_message, 'groupId': $scope.current_group, 'user': $scope.current_user});
 				$scope.your_message = null;
 				alertify.success(res);
 			})
@@ -103,13 +103,15 @@ angular.module('myappApp')
 		}
 	};
 
-	/*listen event group chat message*/
-	mySocket.on('group chat message', function(data){
-		if(data.user && data.user.name) {
-			$('#messages'+data.groupId).append($('<li><h4>'+ data.user.name +'</h4>'+ data.msg +'</li>'));
-		}else {
-			$('#messages'+data.groupId).append($('<li><h4>Anonymous</h4>'+ data.msg +'</li>'));
-		}
-		$('.tab-content').scrollTop($('.tab-content')[0].scrollHeight);
+	$(function(){
+		/*listen event group chat message*/
+		$socket.on('group chat message', function(data){
+			if(data.user && data.user.name) {
+				$('#messages'+data.groupId).append($('<li><h4>'+ data.user.name +'</h4>'+ data.msg +'</li>'));
+			}else {
+				$('#messages'+data.groupId).append($('<li><h4>Anonymous</h4>'+ data.msg +'</li>'));
+			}
+			$('.tab-content').scrollTop($('.tab-content')[0].scrollHeight);
+		});
 	});
 });
