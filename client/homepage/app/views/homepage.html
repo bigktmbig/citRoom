@@ -47,17 +47,29 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-7 col-sm-7 col-xs-6" style="background:#fff;height:800px;">
-				content
+			<div class="col-md-7 col-sm-7 col-xs-9" style="background:#fff;height:800px;border: 1px solid #000;">
 				<!-- chat dialog -->
-				<div class="col-md-12 input-group">
-					<div id="chat-dialog" ng-if="isLogin">
-						<div class="wrap-chat-dialog"></div>
+				<div class="chat-dialog">
+					<div class="wrap-chat-dialog">fdgdgdgsdadadasdadssssssssssssssssssssssssssssssss
+					</div>
+					<!-- Chat box -->
+					<!-- <div class="wrap-chat-box">
+						<div class="slide-box">
+							dfgdgdg
+							<simple-chat
+							messages="messages"
+							local-user="current_user"
+							></simple-chat>
+						</div>
+					</div> -->
+					<div class="wrap-chat-box">
+						<div class="slide-box">
+						</div>
 					</div>
 				</div>
 				<div class="clearfix"></div>
 			</div>
-			<div class="col-md-2 col-sm-2 col-xs-3">
+			<div class="col-md-2 col-sm-2 hidden-xs">
 				<div class="sidebar-nav-fixed affix">
 					<div class="right-bar">
 						<div class="wrap-right">
@@ -69,6 +81,11 @@
 									</a>
 								</li>
 							</ul>
+
+							<!-- Search box -->
+							<div id="search-box" ng-if="isLogin">
+								<input type="text" placeholder="Search" class="form-control input-search" />
+							</div>
 						</div>
 					</div>
 				</div>
